@@ -1,16 +1,27 @@
 import React from 'react'
 import Counter from '../components/Counter'
-const CounterPage  = (props) => {
-    return(
+import {connect} from 'dva'
+import PropTypes from 'prop-types'
+import {counterAdd, counterAsyncAdd} from '../actions' // eslint-disable-line
+const CounterPage = ({counter, dispatch, history}) => {
+    return (
         <div>
             <div>Counter</div>
-            <Counter />
+            <Counter
+               
+                counter={counter}
+                dispatch={dispatch}
+                />
         </div>
-
 
     )
 }
 Counter.prototypes = {
-
+    counter: PropTypes.object
 }
-export default CounterPage
+// const mapStateToProps = (state) => {   return {       counter: state.counter
+//  } }
+
+const mapStateToProps = ({counter}) => ({counter})
+
+export default connect(mapStateToProps)(CounterPage)
