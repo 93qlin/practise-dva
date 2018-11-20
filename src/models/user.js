@@ -4,7 +4,6 @@ export default {
   namespace: 'user',
 
   state: {
-    isFetching: false,
     error: null,
     user: null
   },
@@ -29,21 +28,18 @@ export default {
   reducers: {
     'fetch/start'(state, action) {
       return {
-        isFetching: true,
         error: null,
         user: null
       }
     },
     'fetch/success'(state, action) {
       return {
-        isFetching: false,
         error: null,
         user: action.user
       }
     },
     'fetch/error'(state, action) {
       return {
-        isFetching: false,
         error: action.error,
         user: null
       }

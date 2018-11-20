@@ -2,8 +2,12 @@ import React from 'react'
 import PropTypes from 'prop-types' // eslint-disable-line
 import {connect} from 'dva'
 const User = (props) => {
-    const {isFetching, error, user} = props.user
+    console.log(props.loading);
+    
+    const { error, user} = props.user
     const{dispatch} = props
+    let isFetching = props.loading.effects['user/fetch']
+    
     let data
     if (error) {
         data  = error
@@ -23,6 +27,9 @@ const User = (props) => {
 
 User.propTypes = {}
 const mapStateToProps = (state) => {
-    return {user: state.user}
+    return {
+        user: state.user,
+        loading: state.loading,
+    }
 }
 export default connect(mapStateToProps)(User)
